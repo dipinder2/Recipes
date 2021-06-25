@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Demo</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	    <meta name="description" content="Demo project">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+		<style type="text/css"></style>
+	</head>
+	<body>
+		
+	<form action="/register" method="post">
+		first name:
+		<input type="text" name="first_name" class="form-control"><br>
+		last name:
+		<input type="text" class="form-control" name="last_name"><br>
+		email:
+		<input type="email" class="form-control" name="email"><br>
+		password:
+		<input name="password" type="password" class="form-control"><br>
+		confirm password:
+		<input name="confirm_password" type="password" class="form-control"><br>
+	  	<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+
+<br>
+<br>
+<br>
+
+	<form action="/login" method="post">
+	  <div class="mb-3">
+	  	email:
+	    <input name="email" class="email form-control" type="email" class="form-control">
+	  </div>
+	  <div class="mb-3">
+		password:
+	    <input name="password" class="password form-control" type="password" class="form-control">
+	  </div>
+	  <button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+		{% with messages = get_flashed_messages() %}
+		  {% if messages %}
+		    <ul class="flashes">
+		    {% for message in messages %}
+		      <li>{{ message }}</li>
+		    {% endfor %}
+		    </ul>
+		  {% endif %}
+		{% endwith %}
+	</body>
+</html>

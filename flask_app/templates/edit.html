@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Demo</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	    <meta name="description" content="Demo project">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+		<style type="text/css"></style>
+	</head>
+	<body>
+		<h1>edit recipe</h1>
+		<br>
+		<a class="btn btn-danger" href="/logout">Log out</a>
+		<br>
+		<form class="form" action="/update/{{recipe.id}}" method="post">
+			Name:
+			<input required type="text" name="name" value="{{recipe.name}}">
+			<br>
+			<br>
+			description: 
+			<textarea type="text" name="description">{{recipe.description}}</textarea>
+			<br>
+			<br>
+			instructions: 
+			<textarea type="text" name="instructions">{{recipe.instructions}}</textarea>
+			<br>
+			<br>
+			Under thirty minutes:
+
+			{% if recipe.underthirty == 0%}
+			<input type="radio" id="yes" name="underthirty" value="1">
+			<label for="yes">yes</label>
+			<input checked="checked" type="radio" id="no" name="underthirty" value="0">
+			<label for="no">no</label>
+			{% else %}
+			<input checked="checked" type="radio" id="yes" name="underthirty" value="1">
+			<label for="yes">yes</label>
+			<input type="radio" id="no" name="underthirty" value="0">
+			<label for="no">no</label>
+			{% endif %}
+			<br>
+			<br>
+			Made on:
+			<input type="date" required name="created_at" value={{created_at}}>
+			<br>
+			<br>
+			<input type="submit" class="btn btn-primary">
+		</form>
+		{% with messages = get_flashed_messages() %}
+		   {% if messages %}
+		      {% for message in messages %}
+		         <div class="toast" style="color:red" role="alert">{{ message }}</div>
+		      {% endfor %}
+		   {% endif %}
+		{% endwith %}
+	</body>
+	</body>
+</html>
